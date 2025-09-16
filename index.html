@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IXCELLENT</title>
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --light: #f9fafb;
+            --dark: #1f2937;
+            --gray: #6b7280;
+            --light-gray: #e5e7eb;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem 0;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-icon {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        /* Jadwal Pelajaran */
+        .schedule-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 0.8rem;
+            text-align: center;
+            border: 1px solid var(--light-gray);
+        }
+
+        .schedule-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 500;
+        }
+
+        .schedule-table tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+
+        .schedule-table tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        .subject-cell {
+            position: relative;
+            cursor: pointer;
+            
+
+
+        }
+
+        .subject-cell:hover::after {
+            content: attr(data-teacher);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: gray;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        /* Daftar Absen */
+        .attendance-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .attendance-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 0.5rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            background-color: white;
+        }
+
+        .attendance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .attendance-table th, .attendance-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .attendance-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 500;
+        }
+
+        .status-present {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .status-absent {
+            color: #ef4444;
+            font-weight: 500;
+        }
+
+        .status-late {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Bagan Kelas */
+        .class-layout {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .classroom {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .desk {
+            background-color: #f1f5f9;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .desk:hover {
+            transform: scale(1.05);
+        }
+
+        .desk.empty {
+            background-color: #f8fafc;
+            border: 2px dashed var(--light-gray);
+        }
+
+        .desk.teacher-desk {
+            grid-column: 1 / -1;
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .student-name {
+            font-weight: 500;
+        }
+
+        .student-id {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #d1d5db;
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #374151;
+            margin-top: 1.5rem;
+            color: #9ca3af;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 0 0.5rem;
+            }
+            
+            .dashboard-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .classroom {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .schedule-table th, .schedule-table td {
+                padding: 0.4rem;
+                font-size: 0.8rem;
+            }
+            
+            .classroom {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .attendance-filters {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+                    <span>Angkatan IXcellent</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#1" class="active">Beranda</a></li>
+                        <li><a href="#2">Kesepakatan</a></li>
+                        <li><a href="#3">Piket</a></li>
+                        <li><a href="#4">Belajar</a></li>
+                        <li><a href="#5">Absen</a></li>
+                        <li><a href="#6">Struktur</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+         <section id="1"></section>
+        <h1 class="section-title">Beranda Kelas</h1>
+        
+        <div class="dashboard-cards">
+            <div class="card">
+                <h2 class="card-title"><span class="card-icon">📚</span> Kesepakatan Kelas</h2>
+                <p>Budayakan 5S</p>
+            </div>
+            <div class="card">
+                <h2 class="card-title"><span class="card-icon">✅</span> Jumlah Murid</h2>
+                <p>Ikhwan : 9 I  Akhwat : 15</p>
+            </div>
+            <div class="card">
+                <h2 class="card-title"><span class="card-icon">👥</span> Info Kelas</h2>
+                <p>Kelas: VII | Wali Kelas: Bu Deti</p>
+            </div>
+        </div>
+
+         <section id="2"></section>
+        <h2 class="section-title">Kesepakatan Kelas</h2>
+        <div class="attendance-container">
+            <div class="attendance-filters">
+            </div>
+            <table class="attendance-table">
+                <thead>
+        </thead>
+        <tbody>
+          <tr><td><span class="card-icon">🕒</span></td><td>Tepat Waktu Setiap Kegiatan</td></tr>
+          <tr><td><span class="card-icon">🥼</span></td><td>Berpakaian Rapih Dan Bersih</td></tr>
+          <tr><td><span class="card-icon">😁</span></td><td>Budayakan 5s</td></tr>
+          <tr><td><span class="card-icon">👂</span></td><td>Mendengarkan Guru Saat Pelajaran</td></tr>
+          <tr><td><span class="card-icon">📔</span></td><td>Menyelesaikan Tugas Tepat Waktu</td></tr>
+          <tr><td><span class="card-icon">✨</span></td><td>Menjaga Kebersihan Kelas</td></tr>
+          <tr><td><span class="card-icon">🔤</span></td><td>Gunakan Kata Ajaib</td></tr>
+          
+        </tbody>
+            </table>
+        </div>
+
+         <section id="3"></section>
+       <h2 class="section-title">Jadwal Piket</h2>
+        <div class="schedule-container">
+            <div class="attendance-filters">
+               
+                </select>
+            </div>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        
+                        <th>Senin</th>
+                        <th>Selasa</th>
+                        <th>Rabu</th>
+                        <th>Kamis</th>
+                        <th>Jumat</th>
+                        <th>Sabtu</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    
+                   
+                    <tr>
+     
+                        <td class="subject-cell" data-teacher="Senin">Husna</td>
+                        <td class="subject-cell" data-teacher="Selasa">Agnes</td>
+                        <td class="subject-cell" data-teacher="Rabu">Aghni</td>
+                        <td class="subject-cell" data-teacher="Kamis">Albie</td>
+                        <td class="subject-cell" data-teacher="Jumat">Faris</td>
+                        <td class="subject-cell" data-teacher="Sabtu">Azzam</td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="subject-cell" data-teacher="Senin">Najmah</td>
+                        <td class="subject-cell" data-teacher="Selasa">Aisyah</td>
+                        <td class="subject-cell" data-teacher="Rabu">Khansa</td>
+                        <td class="subject-cell" data-teacher="Kamis">Rafa</td>
+                        <td class="subject-cell" data-teacher="Jumat">Sagara</td>
+                        <td class="subject-cell" data-teacher="Sabtu">Fadhil</td>
+                    </tr>
+                    <tr>
+
+                        <td class="subject-cell" data-teacher="Senin">Nasywa</td>
+                        <td class="subject-cell" data-teacher="Selasa">Himma</td>
+                        <td class="subject-cell" data-teacher="Rabu">Shifa</td>
+                        <td class="subject-cell" data-teacher="Kamis">Albie</td>
+                        <td class="subject-cell" data-teacher="Jumat">Sota</td>
+                        <td class="subject-cell" data-teacher="Sabtu">Arbi</td>
+                        
+                    </tr>
+                    <tr>
+
+                        <td class="subject-cell" data-teacher="Senin"></td>
+                        <td class="subject-cell" data-teacher="Selasa">Inayah</td>
+                        <td class="subject-cell" data-teacher="Rabu">Thalita</td>
+                        <td class="subject-cell" data-teacher="Kamis"></td>
+                        <td class="subject-cell" data-teacher="Jumat"></td>
+                        <td class="subject-cell" data-teacher="Sabtu"></td>
+                    </tr>
+                    <tr>
+
+                        <td class="subject-cell" data-teacher="Senin"></td>
+                        <td class="subject-cell" data-teacher="Selasa">Shiren</td>
+                        <td class="subject-cell" data-teacher="Rabu"></td>
+                        <td class="subject-cell" data-teacher="Kamis"></td>
+                        <td class="subject-cell" data-teacher="Jumat"></td>
+                        <td class="subject-cell" data-teacher="Sabtu"></td>
+                        
+                    </tr>
+                    <tr>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <section id="3"></section>
+        <h2 class="section-title">Jadwal Pelajaran</h2>
+        <div class="schedule-container">
+            <div class="attendance-filters">
+                
+                    
+                </select>
+            </div>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Jam</th>
+                        <th>Senin</th>
+                        <th>Selasa</th>
+                        <th>Rabu</th>
+                        <th>Kamis</th>
+                        <th>Jumat</th>
+                        <th>Sabtu</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>6.45 - 7.30</td>
+                         <td colspan="7" style="text-align: center; background-color: white;">AL-masurat / upacara</td>
+                    </tr>
+                    <tr>
+                        <td>07:30 - 08:30</td>
+                        <td class="subject-cell" data-teacher="Bu Deti , Pak Furqan , Pak Taufik , Pak asep" colspan="4" style="text-align: center; background-color: rgb(246, 248, 252);">Tahfidz</td>
+                        <td class="subject-cell" data-teacher="Pak Taufik" colspan="1" style="text-align: center;  ">Tasmi</td>
+                        <td colspan="1" style="text-align: center; "></td>
+
+                    </tr>
+                    <tr>
+                        <td>08:30 - 09:00</td>
+                        <td class="subject-cell" data-teacher="Bu Lilis , Bu Ifni , Pak Taufik , Pak asep" colspan="4" style="text-align: center; background-color: white;">3M  ( Magic number , Magic memory , Magic count )</td>
+                       
+                       
+                    </tr>
+                    <tr>
+                        <td>09:00 - 10:10</td>
+                        <td class="subject-cell" data-teacher="Bu Ifni">Matematika</td>
+                        <td class="subject-cell" data-teacher="Pak Muhram">B.Arab</td>
+                        <td class="subject-cell" data-teacher="Bu lilis">IPS</td>
+                        <td class="subject-cell" data-teacher="Pak Muhram">Kajian kitab</td>
+                        <td class="subject-cell" data-teacher="Pak Asep">Seni Budaya</td>
+                        <td>CBC</td>
+
+                    </tr>
+                    <tr>
+                        <td>10:10 - 10:40</td>
+                        <td colspan="6" style="text-align: center; background-color: white;">Istirahat</td>
+                    </tr>
+                    <tr>
+                        <td>10:40 - 11:50</td>
+                        <td class="subject-cell" data-teacher="Pak Taufik">Tajwid</td>
+                        <td class="subject-cell" data-teacher="Bu Deti / Pak furqan">Agama  </td>
+                        <td class="subject-cell" data-teacher="Bu Ifni">IPA</td>
+                        <td class="subject-cell" data-teacher="Bu Ifni">MTK</td>
+                        <td class="subject-cell" data-teacher="Bu Asep">Seni Budaya</td>
+                        <td>Eskul</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>11:50 - 13.00</td>
+                         <td colspan="6" style="text-align: center; background-color: white;">Shalat & istirahat</td>
+
+                    </tr>
+                    <tr>
+                        <td>13.00 - 14.10</td>
+                        <td class="subject-cell" data-teacher="Pak Asep">PJOK / Seni budaya</td>
+                        <td class="subject-cell" data-teacher="Bu Deti / Pak furqan">Agama</td>
+                        <td class="subject-cell" data-teacher="Bu Ifni">IPA</td>
+                        <td class="subject-cell" data-teacher="Pak Taufik">B.Inggris</td>
+                        <td class="subject-cell" data-teacher="Bu Ifni & Pak furqan">Pramuka</td>
+                        <td ></td>
+                        
+                    </tr>
+                    <tr>
+                        <td>14.10 - 14.40</td>
+                        <td ></td>
+                        <td class="subject-cell" data-teacher="Bu Deti " colspan="1" style="text-align: center; background-color: White;">Muhadatsah</td>
+                        <td class="subject-cell" data-teacher="Bu Deti">Wali kelas</td>
+                        <td class="subject-cell" data-teacher="Pak Taufik " colspan="1" style="text-align: center; background-color: White;">Muhadatsah</td>
+                        <td ></td>
+                        <td ></td>
+                    </tr>
+                    <tr>
+                        <td>14.40 - 15.30</td>
+                         <td colspan="6" style="text-align: center; background-color: White;">Shalat & Istirahat</td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+           </div>
+          
+            <section id="5"></section>
+           <h2 class="section-title">Daftar Murid</h2>
+        <div class="attendance-container">
+            <div class="attendance-filters">
+            </div>
+            <table class="attendance-table">
+                <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Murid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Afiqah Aulia Zahra</td></tr>
+          <tr><td>2</td><td>Aghniyyatul Husna Wijaya</td></tr>
+          <tr><td>3</td><td>Agnes Ayunda Sunni</td></tr>
+          <tr><td>4</td><td>Aida Nur Hanifah</td></tr>
+          <tr><td>5</td><td>Aisyah Hafizhah</td></tr>
+          <tr><td>6</td><td>Albie Muhammad Raniadi</td></tr>
+          <tr><td>7</td><td>Alixi Sota Wirawan</td></tr>
+          <tr><td>8</td><td>Arbi Faniqa Ramdani</td></tr>
+          <tr><td>9</td><td>Azzam Arifin Dawy Dwi guna</td></tr>
+          <tr><td>10</td><td>Fadhil Abqori Ramdani</td></tr>
+          <tr><td>11</td><td>Faris Dhiaulhaq</td></tr>
+          <tr><td>12</td><td>Haimmatul Aaliyah</td></tr>
+          <tr><td>13</td><td>Husna Althofunnisa</td></tr>
+          <tr><td>14</td><td>Inayah Husna Yain</td></tr>
+          <tr><td>15</td><td>Khansa Az Zarifah</td></tr>
+          <tr><td>16</td><td>Maryam sofiana Shireen</td></tr>
+          <tr><td>17</td><td>Muhammad Davi Alghifari R</td></tr>
+          <tr><td>18</td><td>Nasywa Jauharah Aqila</td></tr>
+          <tr><td>19</td><td>Rafa Keanu Frananda</td></tr>
+          <tr><td>20</td><td>Raihanna Salsabila</td></tr>
+          <tr><td>21</td><td>Sagara Akar Nudjuli</td></tr>
+          <tr><td>22</td><td>Shifa Khuzainah Azzahra</td></tr>
+          <tr><td>23</td><td>Thalita Hanaira Hermawan</td></tr>
+          <tr><td>24</td><td>Najmah </td></tr>
+          
+        </tbody>
+            </table>
+        </div>
+
+         <section id="6"></section>
+        <h2 class="section-title">Struktur organisasi kelas</h2>
+        <div class="class-layout">
+            <div class="classroom">
+                <div class="desk teacher-desk">
+                    <div class="student-name">Bu Deti</div>
+                </div>
+                <div class="desk">
+                    <div class="student-name">Fadhil</div>
+                    <div class="student-id">Ketua murid</div>
+                </div>
+                <div class="desk">
+                    <div class="student-name">Aghni</div>
+                    <div class="student-id">Wakil km</div>
+                </div>
+                <div class="desk">
+                    <div class="student-name">Agnes</div>
+                    <div class="student-id">Bendahara</div>
+                </div>
+                <div class="desk">
+                    <div class="student-name">Aida</div>
+                    <div class="student-id">Sekertaris</div>
+                </div>
+               
+                <div class="desk empty"></div>
+                <div class="desk empty"></div>
+                <div class="desk empty"></div>
+                <div class="desk empty"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tentang IXCELLENT</h3>
+                    <p>Sebuah angkatan yang memiliki kemampuan yang unik dan suka berkarya .</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Info lebih lanjut</h3>
+                    <p>Email : detikurniawati@gmail.com </p>
+                    <p>Telepon : (+62) 878-2225-3147</p>
+                    <p>Alamat : Jl. Malakasari, RT.02/RW.08, Ciluncat, Kec. Cangkuang, Kabupaten Bandung,</p>
+                    <p> Web Developer : Faris Dhiaulhaq</p>
+                </div>
+               
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Angkatan IXCELLENT  .</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
