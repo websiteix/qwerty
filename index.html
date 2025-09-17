@@ -307,13 +307,42 @@
         }
 
 
-        .star {
+       .star {
          position: absolute;
-         width: 2px;
-         background: white;
-         border-radius: 50%;
-         animation: twinkle 2s infinite ease-in-out;
+         background: rgb(122, 192, 219);
+         border-radius: 40%;
+         opacity: 0.8;
+          animation: twinkle 2s infinite ease-in-out;
+      }
+
+        .shooting-star {
+          position: absolute;
+         width: 100px;
+         height: 2px;
+         background: linear-gradient(90deg, white, transparent);
+         opacity: 0.8;
+         transform: rotate(-45deg);
+         animation: shoot 1.5s linear forwards;
+       }
+
+
+        @keyframes twinkle {
+         0%, 100% { opacity: 0.2; }
+         50% { opacity: 1; }
+     }
+
+        
+        @keyframes shoot {
+          0% {
+         transform: translate(0, 0) rotate(-45deg);
+         opacity: 1;
         }
+         100% {
+         transform: translate(-500px, 500px) rotate(-45deg);
+         opacity: 0;
+        }
+      }
+
 
         .student-name {
             font-weight: 500;
@@ -747,17 +776,50 @@
             </div>
         </div>
     </footer>
-    <script>
-    // Bikin bintang random
-    const numStars = 100; 
+  <script>
+    // --- BINTANG BERKEDIP ---
+    const numStars = 590; 
+    const pageHeight = document.body.scrollHeight;
+
     for (let i = 0; i < numStars; i++) {
       let star = document.createElement("div");
       star.className = "star";
-      star.style.top = Math.random() * 100 + "%";
-      star.style.left = Math.random() * 100 + "%";
+
+      // Posisi random sesuai tinggi halaman
+      star.style.top = Math.random() * 4000 + "px";
+      star.style.left = Math.random() * 100 + "vw";
+
+      // Ukuran random (2px - 5px)
+      let size = (Math.random() * 3 + 2.5) + "px";
+      star.style.width = size;
+      star.style.height = size;
+
+      // Kecepatan twinkle random
       star.style.animationDuration = (1 + Math.random() * 2) + "s";
+
       document.body.appendChild(star);
     }
+
+    // --- SHOOTING STAR ---
+    function createShootingStar() {
+      const star = document.createElement("div");
+      star.className = "shooting-star";
+
+      // Posisi random di atas layar
+      star.style.top = Math.random() * 3680 + "px";  
+      star.style.left = (Math.random() * window.innerWidth + 200) + "px";  
+
+      document.body.appendChild(star);
+
+      // Hapus setelah animasi selesai
+      setTimeout(() => {
+        star.remove();
+      }, 1800);
+    }
+
+    // Muncul tiap 4 detik sekali
+    setInterval(createShootingStar, 400);
   </script>
+
 </body>
 </html>
