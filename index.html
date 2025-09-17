@@ -18,14 +18,14 @@
             --primary-dark: #4338ca;
             --secondary: #10b981;
             --accent: #f59e0b;
-            --light: #f9fafb;
+            --light: white;
             --dark: #1f2937;
             --gray: #6b7280;
             --light-gray: #e5e7eb;
         }
 
         body {
-            background-color: #f8fafc;
+            background-color: #0D1B2A;
             color: var(--dark);
             line-height: 1.6;
         }
@@ -114,25 +114,28 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
+
         }
 
         .card {
-            background-color: white;
+            background-color: #2e4777;
             border-radius: 12px;
             padding: 1.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s, box-shadow 0.3s;
+            color: white;
         }
 
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            
         }
 
         .card-title {
             font-size: 1.2rem;
             margin-bottom: 1rem;
-            color: var(--primary);
+            color: #e7eefc;
             display: flex;
             align-items: center;
         }
@@ -144,12 +147,13 @@
 
         /* Jadwal Pelajaran */
         .schedule-container {
-            background-color: white;
+            background-color: #2e4777;
             border-radius: 12px;
             padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px rgba(199, 188, 188, 0.05);
             margin-bottom: 2rem;
             overflow-x: auto;
+            color:whitesmoke;
         }
 
         .schedule-table {
@@ -171,12 +175,10 @@
         }
 
         .schedule-table tr:nth-child(even) {
-            background-color: #f9fafb;
+            background-color:#49618f;
         }
 
-        .schedule-table tr:hover {
-            background-color: #f1f5f9;
-        }
+
 
         .subject-cell {
             position: relative;
@@ -203,12 +205,13 @@
 
         /* Daftar Absen */
         .attendance-container {
-            background-color: white;
+            background-color: #2e4777;
             border-radius: 12px;
             padding: 1.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             margin-bottom: 2rem;
             overflow-x: auto;
+            color:#E0E1DD ;
         }
 
         .attendance-filters {
@@ -260,7 +263,7 @@
 
         /* Bagan Kelas */
         .class-layout {
-            background-color: white;
+            background-color: #2e4777  ;
             border-radius: 12px;
             padding: 1.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -275,13 +278,14 @@
         }
 
         .desk {
-            background-color: #f1f5f9;
+            background-color: #3a79c2;
             border-radius: 8px;
             padding: 1rem;
             text-align: center;
             position: relative;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             transition: transform 0.2s;
+            color: rgb(74, 47, 226);
         }
 
         .desk:hover {
@@ -289,8 +293,9 @@
         }
 
         .desk.empty {
-            background-color: #f8fafc;
+            background-color: #3a79c2;
             border: 2px dashed var(--light-gray);
+            
         }
 
         .desk.teacher-desk {
@@ -301,13 +306,22 @@
             margin-bottom: 1rem;
         }
 
+
+        .star {
+         position: absolute;
+         width: 2px;
+         background: white;
+         border-radius: 50%;
+         animation: twinkle 2s infinite ease-in-out;
+        }
+
         .student-name {
             font-weight: 500;
         }
 
         .student-id {
             font-size: 0.8rem;
-            color: var(--gray);
+            color: white;
         }
 
         /* Footer */
@@ -428,7 +442,7 @@
         
         <div class="dashboard-cards">
             <div class="card">
-                <h2 class="card-title"><span class="card-icon">📚</span> Kesepakatan Kelas</h2>
+                <h2 class="card-title" ><span class="card-icon">📚</span> Kesepakatan Kelas</h2>
                 <p>Budayakan 5S</p>
             </div>
             <div class="card">
@@ -443,7 +457,7 @@
 
          <section id="2"></section>
         <h2 class="section-title">Kesepakatan Kelas</h2>
-        <div class="attendance-container">
+        <div class="attendance-container" >
             <div class="attendance-filters">
             </div>
             <table class="attendance-table">
@@ -564,18 +578,19 @@
                 <tbody>
                     <tr>
                         <td>6.45 - 7.30</td>
-                         <td colspan="7" style="text-align: center; background-color: white;">AL-masurat / upacara</td>
+                         <td colspan="7" style="text-align: center;;">AL-masurat / upacara</td>
                     </tr>
                     <tr>
                         <td>07:30 - 08:30</td>
-                        <td class="subject-cell" data-teacher="Bu Deti , Pak Furqan , Pak Taufik , Pak asep" colspan="4" style="text-align: center; background-color: rgb(246, 248, 252);">Tahfidz</td>
-                        <td class="subject-cell" data-teacher="Pak Taufik" colspan="1" style="text-align: center;  ">Tasmi</td>
+                        <td class="subject-cell" data-teacher="Bu Deti , Pak Furqan , Pak Taufik , Pak asep" colspan="4" style="text-align: center; ">Tahfidz</td>
                         <td colspan="1" style="text-align: center; "></td>
+
+                        <td class="subject-cell" data-teacher="Pak Taufik" colspan="1" style="text-align: center;  ">Tasmi</td>
 
                     </tr>
                     <tr>
                         <td>08:30 - 09:00</td>
-                        <td class="subject-cell" data-teacher="Bu Lilis , Bu Ifni , Pak Taufik , Pak asep" colspan="4" style="text-align: center; background-color: white;">3M  ( Magic number , Magic memory , Magic count )</td>
+                        <td class="subject-cell" data-teacher="Bu Lilis , Bu Ifni , Pak Taufik , Pak asep" colspan="4" style="text-align: center;">3M  ( Magic number , Magic memory , Magic count )</td>
                        
                        
                     </tr>
@@ -591,7 +606,7 @@
                     </tr>
                     <tr>
                         <td>10:10 - 10:40</td>
-                        <td colspan="6" style="text-align: center; background-color: white;">Istirahat</td>
+                        <td colspan="6" style="text-align: center;">Istirahat</td>
                     </tr>
                     <tr>
                         <td>10:40 - 11:50</td>
@@ -605,7 +620,7 @@
                     </tr>
                     <tr>
                         <td>11:50 - 13.00</td>
-                         <td colspan="6" style="text-align: center; background-color: white;">Shalat & istirahat</td>
+                         <td colspan="6" style="text-align: center; ">Shalat & istirahat</td>
 
                     </tr>
                     <tr>
@@ -621,15 +636,15 @@
                     <tr>
                         <td>14.10 - 14.40</td>
                         <td ></td>
-                        <td class="subject-cell" data-teacher="Bu Deti " colspan="1" style="text-align: center; background-color: White;">Muhadatsah</td>
+                        <td class="subject-cell" data-teacher="Bu Deti " colspan="1" style="text-align: center; ;">Muhadatsah</td>
                         <td class="subject-cell" data-teacher="Bu Deti">Wali kelas</td>
-                        <td class="subject-cell" data-teacher="Pak Taufik " colspan="1" style="text-align: center; background-color: White;">Muhadatsah</td>
+                        <td class="subject-cell" data-teacher="Pak Taufik " colspan="1" style="text-align: center; ">Muhadatsah</td>
                         <td ></td>
                         <td ></td>
                     </tr>
                     <tr>
                         <td>14.40 - 15.30</td>
-                         <td colspan="6" style="text-align: center; background-color: White;">Shalat & Istirahat</td>
+                         <td colspan="6" style="text-align: center; ">Shalat & Istirahat</td>
 
                     </tr>
 
@@ -732,5 +747,17 @@
             </div>
         </div>
     </footer>
+    <script>
+    // Bikin bintang random
+    const numStars = 100; 
+    for (let i = 0; i < numStars; i++) {
+      let star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + "%";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.animationDuration = (1 + Math.random() * 2) + "s";
+      document.body.appendChild(star);
+    }
+  </script>
 </body>
 </html>
