@@ -306,6 +306,59 @@
             margin-bottom: 1rem;
         }
 
+        .gallery {
+         display: flex;
+         grid-template-columns: repeat(4, 160px);
+         flex-wrap: wrap;
+         justify-content: center; /* lebar fix 150px */
+         gap: 8px;
+        }
+
+    .gallery img {
+     width: 120px;   /* atur lebar */
+     height: auto;   /* biar proporsi gak aneh */
+     border-radius: 8px;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Lightbox fullscreen */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+
+    /* Tombol close */
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: red;
+    }
+
 
        .star {
          position: absolute;
@@ -396,6 +449,8 @@
             margin-top: 1.5rem;
             color: #9ca3af;
         }
+
+     
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -559,7 +614,7 @@
                     </tr>
                     <tr>
 
-                        <td class="subject-cell" data-teacher="Senin"></td>
+                        <td class="subject-cell" data-teacher="Senin">Afiqah</td>
                         <td class="subject-cell" data-teacher="Selasa">Inayah</td>
                         <td class="subject-cell" data-teacher="Rabu">Thalita</td>
                         <td class="subject-cell" data-teacher="Kamis"></td>
@@ -568,9 +623,9 @@
                     </tr>
                     <tr>
 
-                        <td class="subject-cell" data-teacher="Senin"></td>
+                        <td class="subject-cell" data-teacher="Senin">Aida</td>
                         <td class="subject-cell" data-teacher="Selasa">Shiren</td>
-                        <td class="subject-cell" data-teacher="Rabu"></td>
+                        <td class="subject-cell" data-teacher="Rabu">Raihanna</td>
                         <td class="subject-cell" data-teacher="Kamis"></td>
                         <td class="subject-cell" data-teacher="Jumat"></td>
                         <td class="subject-cell" data-teacher="Sabtu"></td>
@@ -755,6 +810,62 @@
         </div>
     </main>
 
+            <section id="7"></section>
+         
+       <div class="gallery">
+         <img src="anbk2.jpg" alt="foto1">
+         <img src="gabut1.jpg" alt="foto1">
+         <img src="gabut3.jpg" alt="foto1">
+         <img src="gabut4.jpg" alt="foto1">
+         <img src="gabut5.jpg" alt="foto1">
+         <img src="gabut6.jpg" alt="foto1">
+         <img src="gabut7.jpg" alt="foto1">
+         <img src="gabut8.jpg" alt="foto1">
+         <img src="gabut9.jpg" alt="foto1">
+         <img src="gabut10.jpg" alt="foto1">
+         <img src="gabut11.jpg" alt="foto1">
+         <img src="gabut12.jpg" alt="foto1">
+         <img src="gabut13.jpg" alt="foto1">
+         <img src="gabut14.jpg" alt="foto1">
+         <img src="gabut15.jpg" alt="foto1">
+         <img src="gabut16.jpg" alt="foto1">
+         <img src="gabut17.jpg" alt="foto1">
+         <img src="gabut18.jpg" alt="foto1">
+         <img src="gabut19.jpg" alt="foto1">
+         <img src="gabut20.jpg" alt="foto1">
+         <img src="gabut21.jpg" alt="foto1">
+         <img src="gabut22.jpg" alt="foto1">
+         <img src="gabut23.jpg" alt="foto1">
+         <img src="gabut24.jpg" alt="foto1">
+         <img src="gabut25.jpg" alt="foto1">
+         <img src="gabut26.jpg" alt="foto1">
+         <img src="gabut27.jpg" alt="foto1">
+         <img src="gabut28.jpg" alt="foto1">
+         <img src="gabut29.jpg" alt="foto1">
+         <img src="gabut30.jpg" alt="foto1">
+         <img src="gabut31.jpg" alt="foto1">
+         <img src="gabut32.jpg" alt="foto1">
+         <img src="gabut33.jpg" alt="foto1">
+         <img src="gabut34.jpg" alt="foto1">
+         <img src="gabut35.jpg" alt="foto1">
+         <img src="gabut36.jpg" alt="foto1">
+         <img src="gabut37.jpg" alt="foto1">
+         <img src="gabut38.jpg" alt="foto1">
+         <img src="gabut39.jpg" alt="foto1">
+         <img src="gabut40.jpg" alt="foto1">
+         <img src="gabut41.jpg" alt="foto1">
+         <img src="gabut42.jpg" alt="foto1">
+         <img src="gabut43.jpg" alt="foto1">
+
+       </div>
+
+       <div class="lightbox" id="lightbox">
+        <span class="close" id="close">&times;</span>
+        <img id="lightbox-img" src="">
+     </div>
+
+    </main>
+
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -777,48 +888,72 @@
         </div>
     </footer>
   <script>
-    // --- BINTANG BERKEDIP ---
-    const numStars = 590; 
+    const numStars = 600; 
     const pageHeight = document.body.scrollHeight;
 
     for (let i = 0; i < numStars; i++) {
       let star = document.createElement("div");
       star.className = "star";
 
-      // Posisi random sesuai tinggi halaman
-      star.style.top = Math.random() * 4000 + "px";
+    
+      star.style.top = Math.random() * 4200 + "px";
       star.style.left = Math.random() * 100 + "vw";
 
-      // Ukuran random (2px - 5px)
+      
       let size = (Math.random() * 3 + 2.5) + "px";
       star.style.width = size;
       star.style.height = size;
 
-      // Kecepatan twinkle random
+      
       star.style.animationDuration = (1 + Math.random() * 2) + "s";
 
       document.body.appendChild(star);
     }
 
-    // --- SHOOTING STAR ---
+    
     function createShootingStar() {
       const star = document.createElement("div");
       star.className = "shooting-star";
 
-      // Posisi random di atas layar
+      
       star.style.top = Math.random() * 3680 + "px";  
       star.style.left = (Math.random() * window.innerWidth + 200) + "px";  
 
       document.body.appendChild(star);
 
-      // Hapus setelah animasi selesai
+      
       setTimeout(() => {
         star.remove();
       }, 1800);
     }
 
-    // Muncul tiap 4 detik sekali
+    
     setInterval(createShootingStar, 400);
+
+   const gallery = document.querySelectorAll('.gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('close');
+
+    // Klik foto → buka fullscreen
+    gallery.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+      });
+    });
+
+    // Klik tombol X → tutup fullscreen
+    closeBtn.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    // Klik area gelap → tutup fullscreen
+    lightbox.addEventListener('click', (e) => {
+      if (e.target !== lightboxImg) {
+        lightbox.style.display = 'none';
+      }
+    });
   </script>
 
 </body>
